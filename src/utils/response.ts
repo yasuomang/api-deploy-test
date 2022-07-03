@@ -23,7 +23,7 @@ export class IResponse<T> {
 // 定义类SuccessResponse ,用于处理成功类型
 export class SuccessResponse<T> extends IResponse<T> {
   constructor(options: IResponseData<T>) {
-    options.status = 'ok';
+    options.status = 'okk';
     super(options);
   }
 }
