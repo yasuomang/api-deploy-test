@@ -12,7 +12,7 @@ jobs:
     steps:
       # 对应第2步，借助已有脚本拉取代码
       - name: Checkout
-        uses: actions/checkout@develop
+        uses: actions/checkout@master
 
       # 第3步的准备工作，先配置好node环境
       - uses: actions/setup-node@v2
@@ -26,14 +26,13 @@ jobs:
 
       # 对应第4、5步，配置参数登陆服务器+拷贝到指定目录
       - name: Upload
-        uses: appleboy/scp-action@develop
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          # 拷贝 .next、public文件夹和package.json文件到服务器指定目录
-          source: '.next/,public/,package.json'
-          target: '/nextjs-demo'
+          source: 'dist/,package.json,yarn.lock'
+          target: '/home/myProject/test-api-deploy'
 
       # 对应第6步，重启安装依赖、后端服务2
       - name: Server Reload
