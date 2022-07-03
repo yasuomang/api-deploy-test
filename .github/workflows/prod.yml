@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           source: 'dist/,package.json,yarn.lock'
-          target: '/home/myProject/test-api-deploy'
+          target: '/home/myProject/test-api'
 
       # 对应第6步，重启安装依赖、后端服务2
       - name: Server Reload
@@ -42,6 +42,6 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cd /nextjs-demo
-            npm i
-            pm2 reload nextjs-dem
+            cd /home/myProject/test-api
+            yarn
+            pm2 reload test-api
